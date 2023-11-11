@@ -1,6 +1,6 @@
-# AnotherTerm_Install-LocalRFS
+# AnotherTerm_Install-Local-Files
 
-Simple mod to install Linux containers from storage.
+Simple mods to install Linux containers from storage.
 
 Script for:
 https://github.com/green-green-avk/AnotherTerm
