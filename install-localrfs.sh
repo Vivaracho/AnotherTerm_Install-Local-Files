@@ -8,12 +8,12 @@ set -e
 show_usage() {
 echo 'Usage:'
 #echo "  $0 [-a] [-d] [-e] [--] <distro> <release> [<target_subdir_name>]"
-echo "  $0 [-a] [-d] [-e] [--] <distro> <release> <target_subdir_name> <path_to_file>"
+echo "  $0 [-a] [-d] [-e] [--] <distro> <release> <target_subdir_name> <full_file_path>"
 echo '    -a -- non-interactive mode'
 echo '    -d -- do not use minitar and PRoot from a plugin if present'
 echo '    -e -- fail if no minitar or PRoot from a plugin are present'
 echo
-echo '  <target_subdir_name> - name of container for non-interactive mode; can use: _'
+echo '  <target_subdir_name> - name of container for [-a]; can use: _'
 echo
 echo 'Variables:'
 echo '  REG_USER - user account name; default:' "$REG_USER"
@@ -22,6 +22,10 @@ echo '  PROOT - proot location; default: <auto>'
 echo '  PROOT_USERLAND - proot userland flavor location; default: <auto>'
 echo '  ESSENTIALS_PKG - Application ID of a minitar and PRoot plugin to check; default:' "$ESSENTIALS"
 #echo '  ROOTFS_URL - override root FS source URL'
+echo
+echo 'Additional Information:'
+echo '  Arch: '"$MY_DEVICE_ABIS" '  Api: '"$MY_ANDROID_SDK"
+echo
 }
 ###
 
@@ -79,7 +83,7 @@ PROOT="${PROOT:-'$DATA_DIR/root/bin/proot'}"
 PROOT_USERLAND="${PROOT:-'$DATA_DIR/root/bin/proot-userland'}"
 ESSENTIALS="${ESSENTIALS_PKG:-green_green_avk.anothertermshellplugin_android10essentials}"
 
-if [ -z "$1" -o -z "$2" ] ; then
+if [ -z "$1" -o -z "$2" -o -z "$3" -o -z "$4" ] ; then
 show_usage
 exit 1
 fi
